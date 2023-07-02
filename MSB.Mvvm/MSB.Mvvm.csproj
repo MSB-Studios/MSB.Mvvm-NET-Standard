@@ -17,6 +17,8 @@
 		<PackageIcon>Icon.png</PackageIcon>
 		<Description>MSB.Mvvm is a .NET library designed to provide cross-platform solutions.</Description>
 		<PackageProjectUrl>https://github.com/MSB-Studios/MSB.Mvvm-NET-Standard</PackageProjectUrl>
+		<AssemblyName>MSB.Mvvm</AssemblyName>
+		<PackageId>MSB.Mvvm</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>
