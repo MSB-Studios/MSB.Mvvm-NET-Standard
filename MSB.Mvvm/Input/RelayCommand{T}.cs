@@ -16,7 +16,7 @@ namespace MSB.Mvvm.Input
         /// <param name="execute">The execution logic.</param>
         public RelayCommand(Action<T> execute) : this(execute, null)
         {
-            this.execute = execute;
+            
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace MSB.Mvvm.Input
         /// <inheritdoc/>
         public bool CanExecute(object parameter)
         {
-            return canExecute?.Invoke((T)parameter) is not false;
+            return canExecute?.Invoke((T)parameter) is true;
         }
 
         /// <inheritdoc/>
