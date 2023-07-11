@@ -38,7 +38,7 @@ namespace MSB.Mvvm.Input
         /// <inheritdoc/>
         public bool CanExecute(object parameter)
         {
-            return canExecute?.Invoke() is true;
+            return canExecute?.Invoke() is not false;
         }
 
         /// <inheritdoc/>
