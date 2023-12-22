@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<RootNamespace>MSB.Mvvm</RootNamespace>
+		<RootNamespace>MSB</RootNamespace>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>1.1.0</Version>
+		<Version>1.2.0</Version>
 		<Company>MSB Studios</Company>
 		<Authors>MSB Studios</Authors>
 		<PackageTags>Mvvm;.NET; WPF; UWP; Android</PackageTags>
