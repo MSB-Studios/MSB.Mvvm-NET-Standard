@@ -4,17 +4,26 @@ using System;
 namespace MSB.Mvvm.Input
 {
     /// <summary>
-    /// A generic command whose sole purpose is to relay its functionality to other
+    /// A command whose sole purpose is to relay its functionality to other
     /// objects by invoking delegates.
     /// </summary>
-    /// <typeparam name="T">The type of parameter being passed as input to the callbacks.</typeparam>
-    public sealed class RelayCommand<T> : ICommand
+    public sealed class RelayCommand : ICommand
     {
+        /// <summary>
+        /// The <see cref="Action"/> to invoke when <see cref="Execute"/> is used.
+        /// </summary>
+        readonly Action execute;
+
+        /// <summary>
+        /// The optional action to invoke when <see cref="CanExecute"/> is used.
+        /// </summary>
+        readonly Func<bool>? canExecute;
+
         /// <summary>
         /// Initializes a new instance of the RelayCommand class that can always execute.
         /// </summary>
         /// <param name="execute">The execution logic.</param>
-        public RelayCommand(Action<T> execute) : this(execute, null)
+        public RelayCommand(Action execute) : this(execute, null)
         {
             
         }
@@ -25,7 +34,7 @@ namespace MSB.Mvvm.Input
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public RelayCommand(Action<T> execute, Func<T, bool>? canExecute)
+        public RelayCommand(Action execute, Func<bool>? canExecute)
         {
             if (execute is null)
                 throw new ArgumentNullException(nameof(execute));
@@ -39,14 +48,14 @@ namespace MSB.Mvvm.Input
         /// <inheritdoc/>
         public bool CanExecute(object parameter)
         {
-            return canExecute?.Invoke((T)parameter) is true;
+            return canExecute?.Invoke() is not false;
         }
 
         /// <inheritdoc/>
         public void Execute(object parameter)
         {
-            if (CanExecute((T)parameter))
-                execute((T)parameter);
+            if (CanExecute(parameter))
+                execute();
         }
 
         /// <summary>
@@ -65,16 +74,6 @@ namespace MSB.Mvvm.Input
         public event EventHandler? CanExecuteChanged;
 
         #endregion
-
-        /// <summary>
-        /// The <see cref="Action"/> to invoke when <see cref="Execute"/> is used.
-        /// </summary>
-        readonly Action<T> execute;
-
-        /// <summary>
-        /// The optional action to invoke when <see cref="CanExecute"/> is used.
-        /// </summary>
-        readonly Func<T, bool>? canExecute;
     }
 }
 
