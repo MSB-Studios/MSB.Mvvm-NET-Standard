@@ -10,6 +10,16 @@ namespace MSB.Mvvm.Input
     public sealed class RelayCommand : ICommand
     {
         /// <summary>
+        /// The <see cref="Action"/> to invoke when <see cref="Execute"/> is used.
+        /// </summary>
+        readonly Action execute;
+
+        /// <summary>
+        /// The optional action to invoke when <see cref="CanExecute"/> is used.
+        /// </summary>
+        readonly Func<bool>? canExecute;
+
+        /// <summary>
         /// Initializes a new instance of the RelayCommand class that can always execute.
         /// </summary>
         /// <param name="execute">The execution logic.</param>
@@ -64,16 +74,6 @@ namespace MSB.Mvvm.Input
         public event EventHandler? CanExecuteChanged;
 
         #endregion
-
-        /// <summary>
-        /// The <see cref="Action"/> to invoke when <see cref="Execute"/> is used.
-        /// </summary>
-        readonly Action execute;
-
-        /// <summary>
-        /// The optional action to invoke when <see cref="CanExecute"/> is used.
-        /// </summary>
-        readonly Func<bool>? canExecute;
     }
 }
 
